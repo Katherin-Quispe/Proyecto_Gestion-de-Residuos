@@ -5,7 +5,8 @@ using namespace std;
 
 class clsRutaRecorrido{
     private:
-        string ruta;
+        string rutaIda;
+        string rutaReg;
     public:
         void asignarRutaIda();
         void asignarRutaRegreso();
