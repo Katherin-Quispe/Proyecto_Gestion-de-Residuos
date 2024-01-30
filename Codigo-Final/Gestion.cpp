@@ -360,29 +360,6 @@ void ClsUsuario::mostrarUsuario() {
     cout << "Contraseña: " << contrasena << endl;
     cout << "Tipo de cargo admin/usuario: " << tipo << endl;
 }
-string obtenerContrasena() {
-    string contrasena = "";
-    char caracter;
-     while (true) {
-        caracter = _getch();  // Utiliza _getch() para obtener un carácter sin imprimirlo en pantalla
-
-        if (caracter == 13) {  // 13 es el código ASCII para la tecla Enter
-            break;
-        } else if (caracter == 8) {  // 8 es el código ASCII para la tecla Backspace
-            if (!contrasena.empty()) {
-                cout << "\b \b";  // Retrocede y borra el último carácter
-                contrasena.pop_back();
-            }
-        } else {
-            cout << '*';  // Muestra un asterisco en lugar del carácter real
-            contrasena += caracter;
-        }
-    }
-
-    cout << endl;
-
-    return contrasena;
-}
 //verificaion de Credenciales
 struct VeriUsuario {
     string nombreUsuario;
@@ -399,7 +376,7 @@ bool verificarCredenciales(const string& usuario, const string& contrasena) {
 
     VeriUsuario usuarioArchivo;
 
-    while (archivo.read(reinterpret_cast<char*>(&usuarioArchivo), sizeof(VeriUsuario))) {
+    while (archivo.read((char *)&usuarioArchivo, sizeof(VeriUsuario))) {
         if (usuarioArchivo.nombreUsuario == usuario && usuarioArchivo.contrasena == contrasena) {
             return true;  // Usuario y contraseña coinciden
         }
@@ -424,12 +401,12 @@ int main() {
     string salir;
     autenticacion=true;
     cout << "BIENVENIDO" << endl;
-    do{ 
+    
     cout<<"Ingrese su nombre de usuario: ";cin>>usuario;
-    cout<<"Ingrese su contraseña: "; cin>>contrasena;
+    cout<<"Ingrese su contrase�a: "; cin>>contrasena;
     cout<<"Salir?(Si/no)"; cin>>salir;
     if (verificarCredenciales(usuario, contrasena)) {
-        cout << "Inicio de sesión exitoso." << endl;
+        cout << "Inicio de sesion exitoso." << endl;
         cout << "Es usted Administrador o Usuario(Trabajador)? (A/U): ";
     cin >> opcion;
     
@@ -474,15 +451,12 @@ int main() {
         usuario.registrarUsuario();
         usuario.mostrarUsuario();
     } else {
-        cout << "Opción incorrecta." << endl;
+        cout << "Opcion incorrecta." << endl;
     }
     } 
-    else {
-        cout << "Usuario o contraseña incorrectos." << endl;
+    else{
+        cout << "Usuario o contrase�a incorrectos." << endl;
         autenticacion=false;
-    }
-    }while(!autenticacion);
-    
-    
+    }    
     return 0;
 }
