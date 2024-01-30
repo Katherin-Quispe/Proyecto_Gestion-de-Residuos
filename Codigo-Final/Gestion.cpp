@@ -399,7 +399,7 @@ bool verificarCredenciales(const string& usuario, const string& contrasena) {
 
     VeriUsuario usuarioArchivo;
 
-    while (archivo.read(reinterpret_cast<char*>(&usuarioArchivo), sizeof(Usuario))) {
+    while (archivo.read(reinterpret_cast<char*>(&usuarioArchivo), sizeof(VeriUsuario))) {
         if (usuarioArchivo.nombreUsuario == usuario && usuarioArchivo.contrasena == contrasena) {
             return true;  // Usuario y contraseña coinciden
         }
@@ -420,21 +420,19 @@ int main() {
     string usuario;
     string contrasena;
     setlocale(LC_ALL, "");
-
+    bool autenticacion;
+    string salir;
+    autenticacion=true;
     cout << "BIENVENIDO" << endl;
+    do{ 
     cout<<"Ingrese su nombre de usuario: ";cin>>usuario;
     cout<<"Ingrese su contraseña: "; cin>>contrasena;
-    
+    cout<<"Salir?(Si/no)"; cin>>salir;
     if (verificarCredenciales(usuario, contrasena)) {
         cout << "Inicio de sesión exitoso." << endl;
-    } 
-    else {
-        cout << "Usuario o contraseña incorrectos." << endl;
-    }
-    cout << "Es usted Administrador o Usuario(Trabajador)? (A/U): ";
+        cout << "Es usted Administrador o Usuario(Trabajador)? (A/U): ";
     cin >> opcion;
     
-
     if (opcion == 'A') {
         ClsAdministrador admin;
 
@@ -478,6 +476,13 @@ int main() {
     } else {
         cout << "Opción incorrecta." << endl;
     }
-
+    } 
+    else {
+        cout << "Usuario o contraseña incorrectos." << endl;
+        autenticacion=false;
+    }
+    }while(!autenticacion);
+    
+    
     return 0;
 }
