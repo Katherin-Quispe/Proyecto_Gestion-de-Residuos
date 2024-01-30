@@ -14,6 +14,7 @@ int main(){
     clsHorarioRecolec hor;
     clsRutaRecorrido ruta;
     clsVehiRecolecc recol;
+    tRegistro registro;
     cout<<"BIENVENIDO";
     cout<<"Es usted Administrador o Usuario(Trabajador)?: A/U "; cin>>opcion;
     if(opcion == 'A'){
@@ -76,10 +77,17 @@ int main(){
         cin >> opciones;
     	switch(opciones){
         	case 1: {
+                recol.registrarReporte();
             	break;   
-        	}        	
+        	}
+            case 2:{
+                mostrar(registro);
+            }       
+            case 3:{
+                recol.mostrarReporte();
+            } 	
     	}
-    }while(opciones!=6);
+    }while(opciones!=4);
     }
 return 0 ;
 }
