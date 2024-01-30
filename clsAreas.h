@@ -8,7 +8,6 @@ class clsAreas{
         string Area;
         int nAreas;
     public:
-        clsAreas();
-        void registrarAreas();
-}
+         void registrarAreas();
+};
 #endif

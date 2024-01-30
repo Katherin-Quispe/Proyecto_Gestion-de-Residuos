@@ -7,20 +7,22 @@ class clsVehiRecolecc{
     private:
         int Capacidad;
         int NumVehi;
-        string Tipo;
         string Placa;
         int Hora;
         int Minutos;
         int Segundos;
         string Descripcion;
+        int i=0;
+        string Conductor;
+        string Trabajador;
     public:
-        clsVehiRecolecc();
+        
         void asignarTrabajadores();
         void asignarConductor();
         void asignarDatosVehi();
         void mostrarVehiculo();
         void mostrarReporte();
-        void registrar Reporte();
-}
+        void registrarReporte();
+};
 
 #endif

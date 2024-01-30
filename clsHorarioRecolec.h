@@ -1,16 +1,24 @@
 #include <iostream>
+#include <vector>
 using namespace std;
+
 #ifndef CLSHORARIORECOLEC_H
 #define CLSHORARIORECOLEC_H
 
-class clsHorarioRecolec{
-    private:
+class clsHorarioRecolec {
+private:
+    struct Horario {
         int Hora;
         int Minutos;
-        int Segundos;
         string Dia;
-    public:
-        clsHorarioRecolec();
-        void designarHorario();
-        void HorarioDis();
-}
+    };
+
+    vector<Horario> horarios; // Vector para almacenar múltiples horarios
+
+public:
+    
+    void designarHorario();
+    void mostrarHorarios();
+};
+
+#endif
